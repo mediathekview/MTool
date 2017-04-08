@@ -1,0 +1,32 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+#fxPaneFilmList {
+    -fx-background-color: #cccccc;
+    -fx-background-radius: 3;
+    -fx-background-insets: -5;
+    -fx-padding: 10;
+    -fx-border-radius:  3;
+    -fx-border-color: #666666;
+    -fx-border-width: 3;
+}
+
+#fxPaneSearch {
+    -fx-padding: 10;
+    -fx-border-radius:  3;
+    -fx-border-color: #666666;
+    -fx-border-width: 2;
+}
+#fxPaneDel {
+    -fx-padding: 10;
+    -fx-border-radius:  3;
+    -fx-border-color: #666666;
+    -fx-border-width: 2;
+}
+#fxPaneTool {
+    -fx-padding: 10;
+    -fx-border-radius:  3;
+    -fx-border-color: #666666;
+    -fx-border-width: 2;
+}

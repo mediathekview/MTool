@@ -1,12 +1,26 @@
+dist/javadoc
+
+nbproject
+.nb-gradle
+
 *.class
+*.zip
+*~
+.gitignore
+gitUpdate.sh
 
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
+start*.sh
+/.gradle/
+/bin/
+.classpath
+.project
+.settings/
 
-# Package Files #
-*.jar
-*.war
-*.ear
+.idea
+build/
 
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
+/src/main/resources/version.properties
+RepoZugang.properties
+
+README.TXT
+#/dist/
