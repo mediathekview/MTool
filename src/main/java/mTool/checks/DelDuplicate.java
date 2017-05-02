@@ -25,6 +25,7 @@ import de.mediathekview.mlib.filmlisten.FilmlisteLesen;
 import de.mediathekview.mlib.filmlisten.WriteFilmlistJson;
 import java.util.HashSet;
 import java.util.List;
+import mTool.tools.FilmData;
 
 public class DelDuplicate {
 
@@ -58,7 +59,19 @@ public class DelDuplicate {
 
     }
 
-    private void del(boolean senderUrl, List<DatenFilm> list) {
+    private void del(boolean senderUrl, List<FilmData> list) {
+        list.removeIf(film -> {
+            if (!hash.contains(getHash(senderUrl, film.getFilm()))) {
+                hash.add(getHash(senderUrl, film.getFilm()));
+                return false;
+            } else {
+                return true;
+            }
+        });
+        hash.clear();
+    }
+
+    private void delDf(boolean senderUrl, List<DatenFilm> list) {
         list.removeIf(film -> {
             if (!hash.contains(getHash(senderUrl, film))) {
                 hash.add(getHash(senderUrl, film));
@@ -74,12 +87,12 @@ public class DelDuplicate {
         this.simulate = simulate;
         this.url = url;
         start();
-        del(true, filmList);
+        delDf(true, filmList);
         end();
         return before - after;
     }
 
-    public void delSenderUrl(List<DatenFilm> list) {
+    public void delSenderUrl(List<FilmData> list) {
         del(true, list);
     }
 
@@ -87,12 +100,12 @@ public class DelDuplicate {
         this.simulate = simulate;
         this.url = url;
         start();
-        del(false, filmList);
+        delDf(false, filmList);
         end();
         return before - after;
     }
 
-    public void delUrl(List<DatenFilm> list) {
+    public void delUrl(List<FilmData> list) {
         del(false, list);
     }
 

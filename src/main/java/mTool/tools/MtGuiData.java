@@ -19,15 +19,13 @@
  */
 package mTool.tools;
 
-import de.mediathekview.mlib.daten.DatenFilm;
-import javafx.beans.property.SimpleListProperty;
-import javafx.collections.FXCollections;
 import mTool.gui.MtGuiController;
 
 public class MtGuiData {
 
-//    public static ObservableList<DatenFilm> listeFilme = FXCollections.observableArrayList();
-    public static SimpleListProperty<DatenFilm> listeFilme = new SimpleListProperty<>(FXCollections.observableArrayList());
+    public static MtFilmList mtFilmList = new MtFilmList();
+    
+    //public static SimpleListProperty<DatenFilm> listeFilme = new SimpleListProperty<>(FXCollections.observableArrayList());
     public static String pathFilmlist = "";
     public static MtGuiController mlibGuiController = null;
 

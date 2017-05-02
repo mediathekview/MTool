@@ -19,17 +19,17 @@
  */
 package mTool.gui;
 
-import mTool.tools.MtGuiData;
 import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
-import mTool.tools.MtFilmList;
+import mTool.tools.MtGuiData;
 
 public class MtGuiController implements Initializable {
 
@@ -51,6 +51,7 @@ public class MtGuiController implements Initializable {
     private AnchorPane search;
     private AnchorPane del;
     private AnchorPane tool;
+    private AnchorPane film;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -65,13 +66,13 @@ public class MtGuiController implements Initializable {
             txtFilmList.setText(MtGuiData.pathFilmlist);
         }
 
-        MtFilmList.loadFilmList(txtFilmList.getText());
-        lblSum.textProperty().bind(MtGuiData.listeFilme.sizeProperty().asString());
+        MtGuiData.mtFilmList.loadFilmList(txtFilmList.getText());
+        lblSum.textProperty().bind(Bindings.size(MtGuiData.mtFilmList).asString());
 
-        btnDelete.setOnAction(e -> MtGuiData.listeFilme.clear());
-        btnSave.setOnAction(e -> MtFilmList.writeFilmList(txtFilmList.getText()));
+        btnDelete.setOnAction(e -> MtGuiData.mtFilmList.clear());
+        btnSave.setOnAction(e -> MtGuiData.mtFilmList.writeFilmList(txtFilmList.getText()));
         btnSelect.setOnAction(e -> getPath());
-        btnLoad.setOnAction(e -> MtFilmList.loadFilmList(txtFilmList.getText()));
+        btnLoad.setOnAction(e -> MtGuiData.mtFilmList.loadFilmList(txtFilmList.getText()));
 
         try {
             FXMLLoader fXMLLoader;
@@ -81,6 +82,12 @@ public class MtGuiController implements Initializable {
             fXMLLoader.setController(ps);
             search = (AnchorPane) fXMLLoader.load();
             tPane.getTabs().add(new Tab("Suchen", search));
+
+            PanelFilmController pf = new PanelFilmController();
+            fXMLLoader = new FXMLLoader(getClass().getResource("/mTool/gui/PanelFilm.fxml"));
+            fXMLLoader.setController(pf);
+            film = (AnchorPane) fXMLLoader.load();
+            tPane.getTabs().add(new Tab("Filme", film));
 
             PanelDelController pd = new PanelDelController();
             fXMLLoader = new FXMLLoader(getClass().getResource("/mTool/gui/PanelDel.fxml"));
@@ -111,7 +118,7 @@ public class MtGuiController implements Initializable {
         if (f != null) {
             try {
                 txtFilmList.setText(f.getAbsolutePath());
-                MtFilmList.loadFilmList(txtFilmList.getText());
+                MtGuiData.mtFilmList.loadFilmList(txtFilmList.getText());
             } catch (Exception ex) {
                 ex.printStackTrace();
             }

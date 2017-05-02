@@ -19,8 +19,6 @@
  */
 package mTool.gui;
 
-import mTool.tools.MtGuiData;
-import de.mediathekview.mlib.daten.DatenFilm;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -31,6 +29,7 @@ import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
+import mTool.tools.MtGuiData;
 import mTool.tools.MtSearchFilms;
 
 public class PanelDelController implements Initializable {
@@ -94,9 +93,9 @@ public class PanelDelController implements Initializable {
 
         @Override
         public void handle(ActionEvent t) {
-            int before = MtGuiData.listeFilme.size();
-            MtGuiData.listeFilme.removeIf(film -> film.arr[DatenFilm.FILM_SENDER].equalsIgnoreCase(sender));
-            int after = MtGuiData.listeFilme.size();
+            int before = MtGuiData.mtFilmList.size();
+            MtGuiData.mtFilmList.removeIf(film -> film.getSender().equalsIgnoreCase(sender));
+            int after = MtGuiData.mtFilmList.size();
             lblDeleted.setText(before - after + "");
             lblSender.setText(sender);
         }

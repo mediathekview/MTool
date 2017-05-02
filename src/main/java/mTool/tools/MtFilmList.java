@@ -19,34 +19,63 @@
  */
 package mTool.tools;
 
+import de.mediathekview.mlib.daten.DatenFilm;
 import de.mediathekview.mlib.daten.ListeFilme;
 import de.mediathekview.mlib.filmlisten.FilmlisteLesen;
 import javafx.application.Platform;
+import javafx.beans.property.SimpleListProperty;
+import javafx.collections.FXCollections;
 
-public class MtFilmList {
+public class MtFilmList extends SimpleListProperty<FilmData> {
 
-    public static void loadFilmList(String url) {
-        ListeFilme lf = new ListeFilme();
-        new FilmlisteLesen().readFilmListe(url, lf, 0 /*all days*/);
-        loadFilmList(lf);
+    public MtFilmList() {
+        super(FXCollections.observableArrayList());
     }
 
-    public static void loadFilmList(ListeFilme lf) {
+    public void loadFilmList(String url) {
+        ListeFilme lf = new ListeFilme();
+        new FilmlisteLesen().readFilmListe(url, lf, 0 /*all days*/);
+        lf.stream().forEach(f -> addFilm(f));
+    }
+
+    public void loadFilmList(ListeFilme lf) {
         Platform.runLater(() -> {
             // wegen Label size
-            MtGuiData.listeFilme.clear();
-            MtGuiData.listeFilme.addAll(lf);
+            clear();
+            lf.stream().forEach(f -> addFilm(f));
         });
     }
 
-    public static ListeFilme getFilmList() {
+    public ListeFilme getFilmList() {
         ListeFilme lf = new ListeFilme();
-        lf.addAll(MtGuiData.listeFilme);
+        this.stream().forEach(f -> lf.add(f.getFilm()));
         return lf;
     }
 
-    public static void writeFilmList(String url) {
+    public void writeFilmList(String url) {
         new FilmlisteLesen().readFilmListe(url, getFilmList(), 0 /*all days*/);
     }
 
+    private void addFilm(DatenFilm film) {
+        FilmData fd = new FilmData(film);
+        add(fd);
+    }
+
+//    public static ObservableList<FilmData> getObservableList(ListeFilme listeFilme) {
+//        ArrayList<FilmData> liste = new ArrayList<>();
+//        for (DatenFilm d : listeFilme) {
+//            FilmData fd = new FilmData(d);
+//            liste.add(fd);
+//        }
+//        return FXCollections.observableList(liste);
+//    }
+//
+//    public static ObservableList<FilmData> getObservableList(SimpleListProperty<DatenFilm> listeFilme) {
+//        ArrayList<FilmData> liste = new ArrayList<>();
+//        for (DatenFilm d : listeFilme) {
+//            FilmData fd = new FilmData(d);
+//            liste.add(fd);
+//        }
+//        return FXCollections.observableList(liste);
+//    }
 }

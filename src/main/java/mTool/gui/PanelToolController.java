@@ -46,15 +46,15 @@ public class PanelToolController implements Initializable {
 
     private void initPanelTool() {
         btnDelSenderUrl.setOnAction(e -> {
-            int size = MtGuiData.listeFilme.getSize();
-            new DelDuplicate().delSenderUrl(MtGuiData.listeFilme);
-            txtDelSenderUrl.setText(size - MtGuiData.listeFilme.getSize() + "");
+            int size = MtGuiData.mtFilmList.size();
+            new DelDuplicate().delSenderUrl(MtGuiData.mtFilmList);
+            txtDelSenderUrl.setText(size - MtGuiData.mtFilmList.size() + "");
         });
 
         btnDelUrl.setOnAction(e -> {
-            int size = MtGuiData.listeFilme.getSize();
-            new DelDuplicate().delUrl(MtGuiData.listeFilme);
-            txtDelUrl.setText(size - MtGuiData.listeFilme.getSize() + "");
+            int size = MtGuiData.mtFilmList.size();
+            new DelDuplicate().delUrl(MtGuiData.mtFilmList);
+            txtDelUrl.setText(size - MtGuiData.mtFilmList.size() + "");
         });
 
     }

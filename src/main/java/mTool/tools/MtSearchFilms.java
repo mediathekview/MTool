@@ -25,7 +25,6 @@ import de.mediathekview.mlib.filmesuchen.ListenerFilmeLadenEvent;
 import javafx.application.Platform;
 import javax.swing.event.EventListenerList;
 import mServer.crawler.FilmeSuchen;
-import mTool.tools.MtFilmList;
 
 public class MtSearchFilms {
 
@@ -57,7 +56,7 @@ public class MtSearchFilms {
             @Override
             public synchronized void fertig(ListenerFilmeLadenEvent event) {
                 // Ergebnisliste listeFilme eintragen -> Feierabend!
-                MtFilmList.loadFilmList(msFilmeSuchen.listeFilmeNeu);
+                MtGuiData.mtFilmList.loadFilmList(msFilmeSuchen.listeFilmeNeu);
                 istAmLaufen = false;
                 for (ListenerFilmeLaden l : listeners.getListeners(ListenerFilmeLaden.class)) {
                     Platform.runLater(() -> l.fertig(event));
@@ -75,7 +74,7 @@ public class MtSearchFilms {
         if (!istAmLaufen) {
             // nicht doppelt starten
             istAmLaufen = true;
-            msFilmeSuchen.filmeBeimSenderLaden(MtFilmList.getFilmList());
+            msFilmeSuchen.filmeBeimSenderLaden(MtGuiData.mtFilmList.getFilmList());
         }
     }
 
@@ -84,7 +83,7 @@ public class MtSearchFilms {
         if (!istAmLaufen) {
             // nicht doppelt starten
             istAmLaufen = true;
-            msFilmeSuchen.updateSender(sender, MtFilmList.getFilmList());
+            msFilmeSuchen.updateSender(sender, MtGuiData.mtFilmList.getFilmList());
         }
     }
 
