@@ -19,9 +19,11 @@
  */
 package mTool.tools;
 
+import de.mediathekview.mlib.Const;
 import de.mediathekview.mlib.daten.DatenFilm;
 import de.mediathekview.mlib.daten.ListeFilme;
 import de.mediathekview.mlib.filmlisten.FilmlisteLesen;
+import de.mediathekview.mlib.filmlisten.WriteFilmlistJson;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleListProperty;
 import javafx.collections.FXCollections;
@@ -53,7 +55,11 @@ public class MtFilmList extends SimpleListProperty<FilmData> {
     }
 
     public void writeFilmList(String url) {
-        new FilmlisteLesen().readFilmListe(url, getFilmList(), 0 /*all days*/);
+        if (url.endsWith(Const.FORMAT_XZ)) {
+            new WriteFilmlistJson().filmlisteSchreibenJsonCompressed(url, getFilmList());
+        } else {
+            new WriteFilmlistJson().filmlisteSchreibenJson(url, getFilmList());
+        }
     }
 
     private void addFilm(DatenFilm film) {

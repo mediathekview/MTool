@@ -20,22 +20,21 @@
 package mTool.tools;
 
 import de.mediathekview.mlib.daten.DatenFilm;
-import javafx.beans.property.SimpleStringProperty;
 
 public class FilmData {
 
-    private final SimpleStringProperty sender;
-    private final SimpleStringProperty thema;
-    private final SimpleStringProperty title;
-    private final SimpleStringProperty url;
     private final DatenFilm film;
 
     public FilmData(DatenFilm film) {
-        this.sender = new SimpleStringProperty(film.arr[DatenFilm.FILM_SENDER]);
-        this.thema = new SimpleStringProperty(film.arr[DatenFilm.FILM_THEMA]);
-        this.title = new SimpleStringProperty(film.arr[DatenFilm.FILM_TITEL]);
-        this.url = new SimpleStringProperty(film.arr[DatenFilm.FILM_URL]);
         this.film = film;
+    }
+
+    public int getNumber() {
+        return film.nr;
+    }
+
+    public void setNumber(int number) {
+        film.nr = number;
     }
 
     public String getSender() {
@@ -43,7 +42,6 @@ public class FilmData {
     }
 
     public void setSender(String fName) {
-        sender.set(fName);
         film.arr[DatenFilm.FILM_SENDER] = fName;
     }
 
@@ -52,7 +50,6 @@ public class FilmData {
     }
 
     public void setThema(String fName) {
-        thema.set(fName);
         film.arr[DatenFilm.FILM_THEMA] = fName;
     }
 
@@ -61,7 +58,6 @@ public class FilmData {
     }
 
     public void setTitle(String fName) {
-        title.set(fName);
         film.arr[DatenFilm.FILM_TITEL] = fName;
     }
 
@@ -70,7 +66,6 @@ public class FilmData {
     }
 
     public void setUrl(String fName) {
-        url.set(fName);
         film.arr[DatenFilm.FILM_URL] = fName;
     }
 

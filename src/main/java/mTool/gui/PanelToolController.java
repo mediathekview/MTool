@@ -24,7 +24,7 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
+import javafx.scene.control.Label;
 import mTool.checks.DelDuplicate;
 import mTool.tools.MtGuiData;
 
@@ -35,9 +35,9 @@ public class PanelToolController implements Initializable {
     @FXML
     Button btnDelUrl;
     @FXML
-    TextField txtDelSenderUrl;
+    Label lblDelSenderUrl;
     @FXML
-    TextField txtDelUrl;
+    Label lblDelUrl;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -48,13 +48,13 @@ public class PanelToolController implements Initializable {
         btnDelSenderUrl.setOnAction(e -> {
             int size = MtGuiData.mtFilmList.size();
             new DelDuplicate().delSenderUrl(MtGuiData.mtFilmList);
-            txtDelSenderUrl.setText(size - MtGuiData.mtFilmList.size() + "");
+            lblDelSenderUrl.setText(size - MtGuiData.mtFilmList.size() + "");
         });
 
         btnDelUrl.setOnAction(e -> {
             int size = MtGuiData.mtFilmList.size();
             new DelDuplicate().delUrl(MtGuiData.mtFilmList);
-            txtDelUrl.setText(size - MtGuiData.mtFilmList.size() + "");
+            lblDelUrl.setText(size - MtGuiData.mtFilmList.size() + "");
         });
 
     }

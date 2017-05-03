@@ -20,49 +20,88 @@
 package mTool.gui;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
+import javafx.beans.binding.Bindings;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableCell;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Callback;
 import mTool.tools.FilmData;
+import mTool.tools.MtFilmList;
 import mTool.tools.MtGuiData;
+import mTool.tools.MtSearchFilms;
 
 public class PanelFilmController implements Initializable {
-    
+
+    private final MtFilmList filteredList = new MtFilmList();
+
     @FXML
     TableView<FilmData> table;
     @FXML
-    Button btnLoad;
-    
+    ComboBox<String> cbxSender;
+    @FXML
+    TextField txtThema;
+    @FXML
+    TextField txtTitle;
+    @FXML
+    Button btnDelFilter;
+    @FXML
+    Label lblSum;
+    @FXML
+    Button btnDelSel;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-        btnLoad.setOnAction(a -> loadList());
-        
+
+        btnDelFilter.setOnAction(a -> delFilter());
+        btnDelSel.setOnAction(a -> delSelFilms());
+        ObservableList<String> obsSender = FXCollections.observableArrayList();
+        obsSender.add("");
+        obsSender.addAll(MtSearchFilms.getSenderNamen());
+        cbxSender.setItems(obsSender);
+        cbxSender.valueProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                filter();
+            }
+        });
+
+        txtThema.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                filter();
+            }
+        });
+        txtTitle.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                filter();
+            }
+        });
+
         table.getColumns().clear();
         table.setEditable(false);
+        table.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+
         TableColumn<FilmData, String> senderColumn = new TableColumn<>("Sender");
+        TableColumn<FilmData, String> nrColumn = new TableColumn<>("Nr");
         TableColumn<FilmData, String> themaColumn = new TableColumn<>("Thema");
         TableColumn<FilmData, String> titleColumn = new TableColumn<>("Titel");
         TableColumn<FilmData, String> urlColumn = new TableColumn<>("URL");
         TableColumn actionDel = new TableColumn("");
         actionDel.setCellValueFactory(new PropertyValueFactory<>("DUMMY"));
-        
+
         TableColumn actionDown = new TableColumn("");
         actionDown.setCellValueFactory(new PropertyValueFactory<>("DUMMY"));
-        
+
         Callback<TableColumn<FilmData, String>, TableCell<FilmData, String>> cellFactory
                 = (final TableColumn<FilmData, String> param) -> {
                     final TableCell<FilmData, String> cell = new TableCell<FilmData, String>() {
-                
+
                 final Button btn = new Button("Delete");
-                
+
                 @Override
                 public void updateItem(String item, boolean empty) {
                     super.updateItem(item, empty);
@@ -72,7 +111,8 @@ public class PanelFilmController implements Initializable {
                     } else {
                         btn.setOnAction((ActionEvent event) -> {
                             FilmData filmDate = getTableView().getItems().get(getIndex());
-//                                    filmDate.play();
+                            MtGuiData.mtFilmList.remove(filmDate);
+                            filteredList.remove(filmDate);
                         });
                         setGraphic(btn);
                         setText(null);
@@ -81,23 +121,71 @@ public class PanelFilmController implements Initializable {
             };
                     return cell;
                 };
-        
+
         actionDel.setCellFactory(cellFactory);
-        
+        actionDel.getStyleClass().add("center");
+
+        nrColumn.setCellValueFactory(new PropertyValueFactory<>("number"));
+        nrColumn.setPrefWidth(100);
+        nrColumn.getStyleClass().add("center");
+
         senderColumn.setCellValueFactory(new PropertyValueFactory<>("sender"));
+        senderColumn.setPrefWidth(100);
+        senderColumn.getStyleClass().add("center");
+
         themaColumn.setCellValueFactory(new PropertyValueFactory<>("thema"));
+        themaColumn.setPrefWidth(200);
+
         titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
+        titleColumn.setPrefWidth(200);
+
         urlColumn.setCellValueFactory(new PropertyValueFactory<>("url"));
-        
-        table.getColumns().addAll(senderColumn, themaColumn, titleColumn, urlColumn, actionDel);
+        urlColumn.setPrefWidth(300);
+
+        table.getColumns().addAll(actionDel, nrColumn, senderColumn, themaColumn, titleColumn, urlColumn);
+        table.itemsProperty().addListener((observable, oldItems, newItems)
+                -> lblSum.textProperty().bind(Bindings.size(newItems).asString("Anzahl Filme: %s")));
+        loadList();
     }
-    
+
     private void loadList() {
-//        final ListProperty<FilmData> workers = new SimpleListProperty<>(FXCollections.observableArrayList());
-//        final ObservableList<FilmData> ol = FilmList.getObservableList(MtGuiData.listeFilme);
-//        Bindings.bindContent(ol, workers);
-        
         table.setItems(MtGuiData.mtFilmList);
     }
-    
+
+    private void filter() {
+        filteredList.clear();
+        String sender = cbxSender.getSelectionModel().getSelectedItem() == null ? "" : cbxSender.getSelectionModel().getSelectedItem();
+        String thema = txtThema.getText().toLowerCase();
+        String title = txtTitle.getText().toLowerCase();
+
+        if (sender.isEmpty() && thema.isEmpty() && title.isEmpty()) {
+            loadList();
+            return;
+        }
+
+        MtGuiData.mtFilmList.stream().forEach(film -> {
+            if ((sender.isEmpty() || sender.equals(film.getSender()))
+                    && (thema.isEmpty() || film.getThema().toLowerCase().contains(thema))
+                    && (title.isEmpty() || film.getTitle().toLowerCase().contains(title))) {
+                filteredList.add(film);
+            }
+        });
+        table.setItems(filteredList);
+    }
+
+    private void delFilter() {
+        cbxSender.getSelectionModel().selectFirst();
+        txtThema.clear();
+        txtTitle.clear();
+    }
+
+    private void delSelFilms() {
+        ArrayList<FilmData> selection = new ArrayList<>();
+        table.getSelectionModel().getSelectedItems().stream().forEach(film -> selection.add(film));
+
+        selection.stream().forEach(film -> {
+            filteredList.remove(film);
+            MtGuiData.mtFilmList.remove(film);
+        });
+    }
 }

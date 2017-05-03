@@ -30,3 +30,11 @@
     -fx-border-color: #666666;
     -fx-border-width: 2;
 }
+
+.center.table-cell {
+    -fx-alignment: center;
+}
+
+.right.table-cell {
+    -fx-alignment: center-right;
+}
