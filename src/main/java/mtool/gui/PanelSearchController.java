@@ -17,7 +17,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package mTool.gui;
+package mtool.gui;
 
 import de.mediathekview.mlib.Config;
 import de.mediathekview.mlib.filmesuchen.ListenerFilmeLaden;
@@ -35,7 +35,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.util.Duration;
 import mServer.crawler.CrawlerConfig;
-import mTool.tools.MtSearchFilms;
+import mtool.tools.MtSearchFilms;
 
 public class PanelSearchController implements Initializable {
 
