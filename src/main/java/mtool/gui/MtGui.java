@@ -17,17 +17,18 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package mTool.gui;
+package mtool.gui;
 
-import mTool.tools.MtGuiData;
 import java.io.IOException;
 import java.util.List;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import mTool.tools.MtConst;
+import mtool.tools.MtConst;
+import mtool.tools.MtGuiData;
 
 public class MtGui extends Application {
 
@@ -45,15 +46,16 @@ public class MtGui extends Application {
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
         initRootLayout();
+        primaryStage.show();
     }
 
     public void initRootLayout() {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/mTool/gui/MtGui.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/de/mediathekview/mtool/gui/MtGui.fxml"));
             Scene scene = new Scene(root);
             primaryStage.setScene(scene);
             primaryStage.setTitle(MtConst.PROGRAMMNAME);
-            primaryStage.show();
+            
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -25,3 +25,4 @@ RepoZugang.properties
 README.TXT
 #/dist/
 /dist/
+/target/
