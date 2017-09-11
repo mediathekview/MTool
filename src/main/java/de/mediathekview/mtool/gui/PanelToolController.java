@@ -17,16 +17,17 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package mtool.gui;
+package de.mediathekview.mtool.gui;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import de.mediathekview.mtool.checks.DelDuplicate;
+import de.mediathekview.mtool.tools.MtGuiData;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import mtool.checks.DelDuplicate;
-import mtool.tools.MtGuiData;
 
 public class PanelToolController implements Initializable {
 

@@ -17,14 +17,14 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package mtool;
+package de.mediathekview.mtool;
 
+import de.mediathekview.mtool.console.Check;
+import de.mediathekview.mtool.gui.MtGui;
+import de.mediathekview.mtool.tools.MtLog;
 import javafx.application.Application;
 import mServer.crawler.CrawlerTool;
 import mServer.tool.MserverDaten;
-import mtool.console.Check;
-import mtool.gui.MtGui;
-import mtool.tools.MtLog;
 
 public class Main {
 

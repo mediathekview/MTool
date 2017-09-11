@@ -17,10 +17,13 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package mtool.gui;
+package de.mediathekview.mtool.gui;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import de.mediathekview.mtool.tools.MtGuiData;
+import de.mediathekview.mtool.tools.MtSearchFilms;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -29,8 +32,6 @@ import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
-import mtool.tools.MtGuiData;
-import mtool.tools.MtSearchFilms;
 
 public class PanelDelController implements Initializable {
 

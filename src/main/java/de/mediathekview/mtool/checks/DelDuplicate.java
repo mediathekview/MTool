@@ -17,16 +17,16 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package mtool.checks;
+package de.mediathekview.mtool.checks;
+
+import java.util.HashSet;
+import java.util.List;
 
 import de.mediathekview.mlib.daten.DatenFilm;
 import de.mediathekview.mlib.daten.ListeFilme;
 import de.mediathekview.mlib.filmlisten.FilmlisteLesen;
 import de.mediathekview.mlib.filmlisten.WriteFilmlistJson;
-import mtool.tools.FilmData;
-
-import java.util.HashSet;
-import java.util.List;
+import de.mediathekview.mtool.tools.FilmData;
 
 public class DelDuplicate {
 

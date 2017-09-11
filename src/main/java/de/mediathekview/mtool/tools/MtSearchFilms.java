@@ -17,13 +17,14 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package mtool.tools;
+package de.mediathekview.mtool.tools;
+
+import javax.swing.event.EventListenerList;
 
 import de.mediathekview.mlib.Config;
 import de.mediathekview.mlib.filmesuchen.ListenerFilmeLaden;
 import de.mediathekview.mlib.filmesuchen.ListenerFilmeLadenEvent;
 import javafx.application.Platform;
-import javax.swing.event.EventListenerList;
 import mServer.crawler.FilmeSuchen;
 
 public class MtSearchFilms {

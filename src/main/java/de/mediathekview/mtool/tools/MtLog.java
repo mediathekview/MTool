@@ -17,18 +17,20 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package mtool.tools;
+package de.mediathekview.mtool.tools;
 
-import de.mediathekview.mlib.tool.Functions;
 import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedList;
+
+import org.apache.commons.lang3.time.FastDateFormat;
+
+import de.mediathekview.mlib.tool.Functions;
 import mServer.tool.MserverDaten;
 import mServer.tool.MserverDatumZeit;
 import mServer.tool.MserverKonstanten;
-import org.apache.commons.lang3.time.FastDateFormat;
 
 public class MtLog {
 

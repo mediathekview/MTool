@@ -17,13 +17,15 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package mtool.gui;
+package de.mediathekview.mtool.gui;
+
+import java.net.URL;
+import java.util.ResourceBundle;
 
 import de.mediathekview.mlib.Config;
 import de.mediathekview.mlib.filmesuchen.ListenerFilmeLaden;
 import de.mediathekview.mlib.filmesuchen.ListenerFilmeLadenEvent;
-import java.net.URL;
-import java.util.ResourceBundle;
+import de.mediathekview.mtool.tools.MtSearchFilms;
 import javafx.animation.RotateTransition;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -31,11 +33,14 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
+import javafx.scene.control.RadioButton;
 import javafx.scene.layout.GridPane;
 import javafx.util.Duration;
 import mServer.crawler.CrawlerConfig;
-import mtool.tools.MtSearchFilms;
 
 public class PanelSearchController implements Initializable {
 

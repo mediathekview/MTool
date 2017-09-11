@@ -17,11 +17,11 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package mtool.console;
+package de.mediathekview.mtool.console;
 
 
-import mTool.checks.ChangeArteDeFr;
-import mtool.checks.DelDuplicate;
+import de.mediathekview.mtool.checks.ChangeArteDeFr;
+import de.mediathekview.mtool.checks.DelDuplicate;
 
 
 public class Check {

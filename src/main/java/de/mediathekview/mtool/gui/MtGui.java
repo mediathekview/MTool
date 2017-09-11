@@ -17,18 +17,18 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package mtool.gui;
+package de.mediathekview.mtool.gui;
 
 import java.io.IOException;
 import java.util.List;
 
+import de.mediathekview.mtool.tools.MtConst;
+import de.mediathekview.mtool.tools.MtGuiData;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import mtool.tools.MtConst;
-import mtool.tools.MtGuiData;
 
 public class MtGui extends Application {
 

@@ -17,12 +17,13 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package mtool.gui;
+package de.mediathekview.mtool.gui;
 
 import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import de.mediathekview.mtool.tools.MtGuiData;
 import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -34,7 +35,6 @@ import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
-import mtool.tools.MtGuiData;
 
 public class MtGuiController implements Initializable {
 
