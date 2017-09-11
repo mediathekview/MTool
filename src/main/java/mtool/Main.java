@@ -17,14 +17,14 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package mTool;
+package mtool;
 
 import javafx.application.Application;
 import mServer.crawler.CrawlerTool;
 import mServer.tool.MserverDaten;
-import mTool.console.Check;
-import mTool.gui.MtGui;
-import mTool.tools.MtLog;
+import mtool.console.Check;
+import mtool.gui.MtGui;
+import mtool.tools.MtLog;
 
 public class Main {
 

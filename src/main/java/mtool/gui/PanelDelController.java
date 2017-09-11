@@ -17,7 +17,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package mTool.gui;
+package mtool.gui;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -29,8 +29,8 @@ import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
-import mTool.tools.MtGuiData;
-import mTool.tools.MtSearchFilms;
+import mtool.tools.MtGuiData;
+import mtool.tools.MtSearchFilms;
 
 public class PanelDelController implements Initializable {
 

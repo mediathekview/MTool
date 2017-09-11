@@ -17,7 +17,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package mTool.gui;
+package mtool.gui;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -31,10 +31,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Callback;
-import mTool.tools.FilmData;
-import mTool.tools.MtFilmList;
-import mTool.tools.MtGuiData;
-import mTool.tools.MtSearchFilms;
+import mtool.tools.FilmData;
+import mtool.tools.MtFilmList;
+import mtool.tools.MtGuiData;
+import mtool.tools.MtSearchFilms;
 
 public class PanelFilmController implements Initializable {
 

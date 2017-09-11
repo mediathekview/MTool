@@ -17,19 +17,24 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-package mTool.gui;
+package mtool.gui;
 
 import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
+
 import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
-import mTool.tools.MtGuiData;
+import mtool.tools.MtGuiData;
 
 public class MtGuiController implements Initializable {
 
@@ -78,25 +83,25 @@ public class MtGuiController implements Initializable {
             FXMLLoader fXMLLoader;
 
             PanelSearchController ps = new PanelSearchController();
-            fXMLLoader = new FXMLLoader(getClass().getResource("/mTool/gui/PanelSearch.fxml"));
+            fXMLLoader = new FXMLLoader(getClass().getResource("/de/mediathekview/mtool/gui/PanelSearch.fxml"));
             fXMLLoader.setController(ps);
             search = (AnchorPane) fXMLLoader.load();
             tPane.getTabs().add(new Tab("Suchen", search));
 
             PanelFilmController pf = new PanelFilmController();
-            fXMLLoader = new FXMLLoader(getClass().getResource("/mTool/gui/PanelFilm.fxml"));
+            fXMLLoader = new FXMLLoader(getClass().getResource("/de/mediathekview/mtool/gui/PanelFilm.fxml"));
             fXMLLoader.setController(pf);
             film = (AnchorPane) fXMLLoader.load();
             tPane.getTabs().add(new Tab("Filme", film));
 
             PanelDelController pd = new PanelDelController();
-            fXMLLoader = new FXMLLoader(getClass().getResource("/mTool/gui/PanelDel.fxml"));
+            fXMLLoader = new FXMLLoader(getClass().getResource("/de/mediathekview/mtool/gui/PanelDel.fxml"));
             fXMLLoader.setController(pd);
             del = (AnchorPane) fXMLLoader.load();
             tPane.getTabs().add(new Tab("Löschen", del));
 
             PanelToolController pt = new PanelToolController();
-            fXMLLoader = new FXMLLoader(getClass().getResource("/mTool/gui/PanelTool.fxml"));
+            fXMLLoader = new FXMLLoader(getClass().getResource("/de/mediathekview/mtool/gui/PanelTool.fxml"));
             fXMLLoader.setController(pt);
             tool = (AnchorPane) fXMLLoader.load();
             tPane.getTabs().add(new Tab("Tools", tool));
