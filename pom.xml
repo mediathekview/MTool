@@ -24,7 +24,7 @@
           </descriptorRefs>
           <archive>
             <manifest>
-              <mainClass>mtool.Main</mainClass>
+              <mainClass>de.mediathekview.mtool.Main</mainClass>
               <addClasspath>true</addClasspath>
               <classpathPrefix>lib</classpathPrefix>
             </manifest>
