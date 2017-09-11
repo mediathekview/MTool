@@ -19,19 +19,23 @@
  */
 package mtool.console;
 
+
+import mTool.checks.ChangeArteDeFr;
 import mtool.checks.DelDuplicate;
+
 
 public class Check {
 
     private enum CheckMode {
 
-        NOTHING, CLEAN_SENDER_URL, CLEAN_URL
+        NOTHING, CLEAN_SENDER_URL, CLEAN_URL, CHECK_ARTE
     }
     CheckMode state = CheckMode.NOTHING;
 
     final String SIMULATE = "-s";
     final String CHECK_SENDER_URL = "-csu";
     final String CHECK_URL = "-cu";
+    final String CHECK_ARTE = "-arte";
 
     final String HELP = ""
             + "\n"
@@ -40,6 +44,7 @@ public class Check {
             + "-s     Vorgang nur Simulieren\n"
             + "-cu    Check: Löschen von doppelten Einträgen: Url\n"
             + "-csu   Check: Löschen von doppelten Einträgen: Sender-Url\n"
+            + "-arte  Check: Korrigiert fehlerhafte Zuordnungen zu ARTE.DE/ARTE.FR\n"
             + "\n";
 
     String path = "";
@@ -78,6 +83,16 @@ public class Check {
                 System.out.println("");
                 new DelDuplicate().delUrl(path, simulate);
                 break;
+            case CHECK_ARTE:
+                System.out.println("===========================================");
+                System.out.println("Check: Löschen von doppelten Einträgen: Url");
+                if (simulate) {
+                    System.out.println("   nur simulieren");
+                }
+                System.out.println("===========================================");
+                System.out.println("");
+                new ChangeArteDeFr().change(path, simulate);
+                break;
             case NOTHING:
 
         }
@@ -107,6 +122,10 @@ public class Check {
                     break;
                 case CHECK_URL:
                     state = CheckMode.CLEAN_URL;
+                    getWhat = true;
+                    break;
+                case CHECK_ARTE:
+                    state = CheckMode.CHECK_ARTE;
                     getWhat = true;
                     break;
             }
